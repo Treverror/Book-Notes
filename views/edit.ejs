@@ -1,0 +1,14 @@
+<h2>Edit: <%= book.title %></h2>
+<form class="form" action="/books/<%= book.id %>" method="post">
+    <label>Title <input name="title" value="<%= book.title %>" required/></label>
+    <label>Author <input name="author" value="<%= book.author || '' %>"/></label>
+    <label>ISBN <input name="isbn" value="<%= book.isbn || '' %>"/></label>
+    <label>Rating (1-10) <input name="rating" type="number" min="1" max="10" value="<%= book.rating || '' %>"/></label>
+    <label>Finished on <input name="finished_on" value="<%=  %>"/></label>
+    <label>Review <textarea name="review" rows="3"><%= book.review || '' %></textarea></label>
+    <label>Notes <textarea name="notes" rows="6"><%= book.notes || '' %></textarea></label>
+    <div class="row">
+        <button type="submit">Save</button>
+        <a class="btn" href="/">Cancel</a>
+    </div>
+</form>

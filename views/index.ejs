@@ -1,0 +1,61 @@
+<ul class="grid">
+  <% if (!books.length) { %>
+    <li class="card empty">
+      <p>No books yet. <a href="/books/new">Add your first</a>.</p>
+    </li>
+  <% } %>
+
+  <% books.forEach((b) => { %>
+    <li class="card">
+
+      <% 
+        // --- define imgUrl & placeholder safely for each book ---
+        const cleanIsbn = (b.isbn || '').replace(/[^0-9Xx]/g, '').toUpperCase();
+        const fromIsbn = coverFromISBN(cleanIsbn, 'M');
+        const imgUrl = (b.cover_url && b.cover_url.startsWith('https://covers.openlibrary.org'))
+          ? b.cover_url 
+          : fromIsbn;
+
+        const svg = `
+          <svg xmlns='http://www.w3.org/2000/svg' width='200' height='300'>
+            <rect width='100%' height='100%' fill='#ddd'/>
+            <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
+              fill='#666' font-family='sans-serif' font-size='16'>
+              No Cover
+            </text>
+          </svg>`;
+        const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+      %>
+
+      <div class="thumb">
+        <img src="<%= imgUrl || placeholder %>" alt="Cover for <%= b.title %>">
+      </div>
+
+      <div class="content">
+        <h3><%= b.title %></h3>
+        <p class="author"><%= b.author || '' %></p>
+        <p class="rating"><%= b.rating || 'Unrated' %> / 10</p>
+        <p class="date"><%= b.finished_on ? new Date(b.finished_on).toLocaleDateString() : '' %></p>
+
+        <details>
+          <summary>Notes / Review</summary>
+          <p><%= b.review || '' %></p>
+          <pre><%= b.notes || '' %></pre>
+        </details>
+
+        <% if (isAdmin) { %>
+          <div class="actions">
+            <form class="row" action="/books/<%= b.id %>/edit" method="get">
+              <button type="submit">Edit</button>
+            </form>
+            <form class="row danger" action="/books/<%= b.id %>/delete" method="post"
+                  onsubmit="return confirm('Delete this book?')">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+
+    </li>
+  <% }); %>
+</ul>

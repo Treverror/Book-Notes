@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    color: #111;
+    background: #bee3ff;
+}
+a {
+    color: inherit;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 5rem;
+}
+
+header nav a {
+    margin-right: .5rem;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+header nav a.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+header nav .btn {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+nav {
+    padding: 2rem;
+}
+.grid {
+    list-style: none;
+    padding: 0;
+}
+main {
+    display: flex;
+    justify-content: center;
+}
+.card {
+    border: 2px solid #000000;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .40);
+}
+
+.thumb {
+    width: 100%;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    background: #f2f2f2;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.placeholder {
+    color: #777;
+    font-size: .9rem;
+}
+
+.meta h3 {
+    margin: .25rem 0;
+    font-size: 1.05rem;
+}
+
+.meta .author {
+    color: #555;
+    margin: .25rem 0;
+}
+
+.meta .rating {
+    color: #e6b800;
+    margin: .25rem 0;
+}
+
+.meta .date {
+    color: #777;
+    font-size: .9rem;
+}
+
+.notes {
+    margin-top: .25rem;
+}
+
+.form {
+    display: grid;
+    gap: .75rem;
+    max-width: 560px;
+}
+
+.form label {
+    display: grid;
+    gap: .25rem;
+}
+
+.form input,
+.form textarea {
+    padding: .5rem .6rem;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    background: #fff;
+}
+
+.row {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.row.danger button {
+    background: #fff;
+    border: 1px solid #f33;
+    color: #f33;
+}
+
+button,
+.btn {
+    border: 1px solid #111;
+    background: #111;
+    color: #fff;
+    border-radius: .5rem;
+    padding: .5rem .8rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover,
+.btn:hover {
+    opacity: .9;
+}
+
+.muted {
+    color: #666;
+    font-size: .9rem;
+}
+
+footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+.buttonclass {
+    display: flex;
+    justify-content: space-between;
+}
+.details {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* two columns: cover | content */
+.card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    /* adjust width as you like */
+    gap: 1rem 1.25rem;
+    align-items: start;
+}
+
+/* fixed-size cover so it doesn't stretch */
+.thumb {
+    width: 200px;
+    height: 280px;
+    /* ~3:4 */
+    border-radius: .5rem;
+    overflow: hidden;
+    background: #f2f2f2;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* stack text, notes, and buttons in the right column */
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+}
+
+/* buttons row under notes */
+.actions {
+    display: flex;
+    gap: .5rem;
+    margin-top: 6.7rem;
+}
+
+/* responsive (optional) */
+@media (max-width: 720px) {
+    .card {
+        grid-template-columns: 120px 1fr;
+    }
+
+    .thumb {
+        width: 120px;
+        height: 180px;
+    }
+}
+
